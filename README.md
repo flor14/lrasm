@@ -28,7 +28,7 @@ Function 3: Normality.
 ## Installation
 
 ```bash
-pip install LR_assumption_test
+$ pip install LR_assumption_test
 ```
 
 ## Usage
