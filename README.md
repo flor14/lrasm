@@ -1,7 +1,7 @@
+# lrasm
+
 # Package for testing linear and multiple linear regression assumptions
 
-
-##### Authors : Yair Guterman, Please add your names.
 
 This package is built to contain functions to be able to quickly and easily test the linearity assumptions befre preforming linear regression or multiple linear regression for a specified dataset. 
 
