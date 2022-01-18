@@ -35,19 +35,19 @@ def homoscedasticity_test(X, y, threshold = 0.05):
 
     if not isinstance(X, pd.DataFrame):
         print("Error: X must be a dataframe")
-        return None
+        return None, None
 
     if not isinstance(y, pd.Series):
         print("Error: y must be a series")
-        return None
+        return None, None
 
     if not X.shape[1] == X.select_dtypes(include=np.number).shape[1]:
         print("Error: X must only contain numeric data.")
-        return None
+        return None, None
 
     if not pd.api.types.is_numeric_dtype(y):
         print("Error: y must only contain numeric data.")
-        return None
+        return None, None
 
     lr = linear_model.LinearRegression()
     lr.fit(X, y)
