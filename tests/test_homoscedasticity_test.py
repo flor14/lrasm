@@ -23,3 +23,10 @@ def test_homoscedasticity_test():
 
     df, plot = homoscedasticity_test(X_proper, y_str_df)
     assert df is None and plot is None
+
+    df, plot = homoscedasticity_test(X_proper, "str")
+    assert df is None and plot is None
+
+    df, plot = homoscedasticity_test(X_proper, y_proper)
+    assert df.correlation_coefficient[0] == 0.09 and df.p_value[0] == 0.848
+    assert isinstance(plot, plt.Figure)
