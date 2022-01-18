@@ -1,3 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+from matplotlib.pyplot import figure
+from scipy import stats
 
 def homoscedasticity_test(X, y, threshold = 0.05):
     """This function recieves a linear regression model and outputs a
@@ -8,10 +14,10 @@ def homoscedasticity_test(X, y, threshold = 0.05):
 
     Parameters
     ----------
-    X : pd.Dataframe / pd.series
+    X : pd.Dataframe
         Dataframe containing exploratory variable data
 
-    y : pd.Dataframe / pd.series
+    y : pd.series
         Dataframe containing response variable data
         
     Returns
@@ -26,13 +32,6 @@ def homoscedasticity_test(X, y, threshold = 0.05):
     >>> correlation_coefficient	p_value
     >>>                   0.038	  0.427
     """
-    
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from sklearn import linear_model
-    from matplotlib.pyplot import figure
-    from scipy import stats
 
     if not isinstance(X, pd.DataFrame):
         print("Error: X must be a dataframe")
@@ -50,16 +49,13 @@ def homoscedasticity_test(X, y, threshold = 0.05):
         print("Error: y must only contain numeric data.")
         return None
 
-    if type(X) != pd.core.frame.DataFrame:
-        print("Please enter a")
-
     lr = linear_model.LinearRegression()
     lr.fit(X, y)
     preds = lr.predict(X)
     comp_df = pd.DataFrame({"Real" : y, "Predicted": preds, "residuals": y-preds})
     comp_df["abs_res"] = abs(comp_df.residuals)
 
-    figure(figsize=(10, 6), dpi=80)
+    plot = figure(figsize=(10, 6), dpi=80)
     plt.scatter(x=comp_df["Predicted"], y=comp_df["residuals"], alpha = 0.5)
     plt.axhline(y = 0.0, color = 'r', linestyle = '--')
     plt.xlabel("Fitted Target Values")
@@ -81,4 +77,4 @@ def homoscedasticity_test(X, y, threshold = 0.05):
         print("The p value of the correlation is below the rejection threshold, thus the correlation is likely significant. \
         \nThe data is unlikely to be homoscedastic.")
 
-    return corr_df
+    return corr_df, plot
