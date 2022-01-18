@@ -78,12 +78,7 @@ def homoscedasticity_test(X, y, threshold = 0.05):
         print("The p value of the correlation is above the rejection threshold, thus the correlation is likely not significant. \
         \nThe data is likely to be homoscedastic if the cluster of points has similar width throughout the X axis on the residuals plot.")
     else:
-        print("The p value of the correlation is below the rejection threshold, thus the correlation is likely significant.")
-        if corr > 0.5:
-            print("This indicates a strong correlation, it is likely the data is not homoscedastic")
-        elif corr > 0.3:
-            print("This indicates a moderately strong correlation, the data may stil be homoscedastic if the cluster of points has similar width throughout the X axis on the residuals plot.")
-        else:
-            print("This indicates a weak correlation, the data is likely to be homoscedastic if the cluster of points has similar width throughout the X axis on the residuals plot")
+        print("The p value of the correlation is below the rejection threshold, thus the correlation is likely significant. \
+        \nThe data is unlikely to be homoscedastic.")
 
     return corr_df
