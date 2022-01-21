@@ -36,7 +36,7 @@ Function 3: Normality.
 ## Installation
 
 ```bash
-$ pip install LR_assumption_test
+$ pip install git+https://github.com/UBC-MDS/lrasm
 ```
 
 ## Usage
