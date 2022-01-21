@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 def multicollinearity_test(X, VIF_thresh):
@@ -24,11 +25,13 @@ def multicollinearity_test(X, VIF_thresh):
     --------
     >>> multicollinearity_test(X_train, VIF_thresh) 
     """
-    X = X._get_numeric_data() #drop non-numeric cols
+    #X = X._get_numeric_data() #drop non-numeric cols
 
-    if not isinstance(X, pd.Series):
-        print("Error: input should be a data frame")
-        return None, None
+    if not isinstance(X, pd.DataFrame):
+        raise TypeError("Error: X must be a data frame")
+        
+    if not X.shape[1] == X.select_dtypes(include=np.number).shape[1]:
+        raise TypeError("Error: X must only contain numeric data.")
 
     vif_df = pd.DataFrame()
     vif_df['features'] = X.columns
@@ -54,8 +57,4 @@ def multicollinearity_test(X, VIF_thresh):
         print('Coefficients are likely probomatic with at leats one VIF greater than 100. Consider removing features with high VIFs')
 
     return vif_df    
-
-
-data = pd.read_csv('BMI.csv')
-multicollinearity_test(data, 10)
 
