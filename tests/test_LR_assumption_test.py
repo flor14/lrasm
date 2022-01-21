@@ -1,1 +1,0 @@
-from LR_assumption_test import LR_assumption_test
