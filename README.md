@@ -5,23 +5,31 @@
 
 This package is built to contain functions to be able to quickly and easily test the linearity assumptions befre preforming linear regression or multiple linear regression for a specified dataset. 
 
+The three assumptions should be satisfied to ensure the effectiveness of a linear regression model for a particular dataset and are described as follows:
+
+-   **No Multicollinearity**: individual predictors within a model should not be linearly correlated to avoid unstable linear estimators
+
+-   **Constant Variance of Residuals (homoscedasticity)**: Since data should be individually and identically distributed, the residuals should be independent of fitted values
+
+-   **Normality of residuals**: Since the conditional expectation of the predicted value should be normal, the error terms of the resulting model should also be normally distributed
+
 The package contains 3 functions one for checking multicolliniarity, one for checking constant variance and one for checking normality in the residuals.
 
 Function 1: Multicolliniarity.
 
-- Takes a data set and a VIF threshold and checks if any of the calculated vif values exceed the given threshold. If so, the function will advise the user that this assumtion is violated, and vice versa.
+- Takes in a pandas dataframe and a VIF threshold and checks if any of the calculated vif values exceed the given threshold. If so, the function will advise the user that this assumtion is violated, and vice versa.
 
 - Returns the Calculated VIF values and a statement telling the user whether or not the assumpton is violated.
 
 Function 2: Constant Variance.
 
-- Takes a data set and some sort of variability threshold and checks if the variabiliy of the residuals is contant by comparing it to the given threshold. If the threshold is exceeded the function will advise the user that this assumtion is violated, and vice versa.
+- Takes in a pandas dataframe containing predictors, a pandas series containing the response, and a variability threshold and checks if the variabiliy of the residuals is contant by comparing it to the given threshold. If the threshold is exceeded the function will advise the user that this assumtion is violated, and vice versa.
 
 - Returns a plot of the fitted values vs residuals, the calculated variability value  and a statement telling the user whether or not the assumpton is violated.
 
 Function 3: Normality.
 
-- Takes a data set and a P-value threshold and preforms a shapiro wilk test for normality. If the P-value of the test does not exceed the threshold, the function will advise the user that this assumtion is violated, and vice versa.
+- Takes in a pandas dataframe containing predictors, a pandas series containing the response, and a P-value threshold, and preforms a shapiro wilk test for normality. If the P-value of the test does not exceed the threshold, the function will advise the user that this assumtion is violated, and vice versa.
 
 - Returns the Calculated P-value and a statement telling the user whether or not the assumpton is violated.
 
