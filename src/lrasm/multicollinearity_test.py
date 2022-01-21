@@ -34,8 +34,6 @@ def multicollinearity_test(X, VIF_thresh):
     vif_df['features'] = X.columns
     vif_df["VIF"] = [variance_inflation_factor(X.values, i) for i in range(len(X.columns))]
 
-    print(vif_df)
-
     possible_multicollinearity = sum([1 for vif in vif_df['VIF'] if vif > VIF_thresh])
     definite_multicollinearity = sum([1 for vif in vif_df['VIF'] if vif > 100])
 
@@ -55,6 +53,9 @@ def multicollinearity_test(X, VIF_thresh):
         print()
         print('Coefficients are likely probomatic with at leats one VIF greater than 100. Consider removing features with high VIFs')
 
-    
+    return vif_df    
 
+
+data = pd.read_csv('BMI.csv')
+multicollinearity_test(data, 10)
 
