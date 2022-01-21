@@ -6,7 +6,7 @@ from scipy import stats
 def normality_test(X, y, p_value_thresh = 0.05):
     """This function recieves a linear regression model and p-value threshold
      and outputs the p-value from a shapiro wilks test along with a statement 
-     indicating the results of the homoscedasticity test
+     indicating the results of the normality test
 
     Parameters
     ----------
