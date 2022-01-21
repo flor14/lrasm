@@ -21,12 +21,12 @@ def test_normality_test():
         normality_test(X_proper, y_str_df)
         normality_test(X_proper, "str")
     
-    with pytest.raises(ValuesError):
+    with pytest.raises(ValueError):
         normality_test(X_wrong_len,y_proper)
     
     assert isinstance(normality_test(X_proper, y_proper)[0],float)
 
-    assert normality_test(X_proper, y_proper,0.01)[1] == "Fail"
+    assert normality_test(X_proper, y_proper,0.01)[1] == "Pass"
 
 
 

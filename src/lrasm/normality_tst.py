@@ -40,19 +40,21 @@ def normality_test(X, y, p_value_thresh = 0.05):
         raise TypeError("Error: y must only contain numeric data.")
 
     if not X.shape[0] == len(y):
-        raise 
+        raise ValueError("Error: x and y must have the same number of data points")
 
     lr = linear_model.LinearRegression()
     lr.fit(X, y)
     preds = lr.predict(X)
     residuals = y-preds
-    shapiro_test = stats.shapiro(x)
+    shapiro_test = stats.shapiro(residuals)
     p_value = shapiro_test.pvalue
+    res = "Pass"
 
     if p_value >= p_value_thresh:
         print("After applying the Shapiro Wilks test for normality of the residuals the regression assumption of normality has passed and you can continue with your analysis")
     else:
         print("After applying the Shapiro Wilks test for normality of the residuals the regression assumption of normality has failed and you should make some djustments before continuing with your analysis")
+        res = "Fail"
 
-    return p_value
+    return (p_value,res)
 
