@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lrasm"
-version = "0.1.0"
+version = "1.0.0"
 description = "A package containing functions to test linearity assumptions for linear regression performed on single or multiple linear regression for a specified dataset"
 authors = ["Yair Guterman, Hatef Rahmani, Song Bo Andy Yang "]
 license = "MIT"
