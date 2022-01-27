@@ -41,7 +41,35 @@ $ pip install git+https://github.com/UBC-MDS/lrasm
 
 ## Usage
 
-- TODO
+`lrasm` can be used to check linear regression assumptions as follows:
+
+```
+from lrasm.homoscedasticity_tst import homoscedasticity_test
+from lrasm.multicollinearity_tst import multicollinearity_test
+from lrasm.normality_tst import normality_test
+from sklearn import datasets
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Import/Process Test data:
+
+data = datasets.load_iris()
+iris_df = pd.DataFrame(data=data.data, columns=data.feature_names)
+X = iris_df.drop("sepal width (cm)", axis = 1)
+y = iris_df["petal width (cm)"]
+
+# Test for Normality:
+
+p_value, res = normality_test(X, y)
+
+# Test for Homoscedasticity:
+
+corr_df, plot = homoscedasticity_test(X, y)
+
+# Test for Multicollinearity:
+
+vif_df = multicollinearity_test(X, VIF_thresh = 10)
+```
 
 ## Ecosystem
 
@@ -54,8 +82,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`LR_assumption_test` was created by Yair Guterman, Hatef Rahmani, Song Bo Andy Yang . It is licensed under the terms of the MIT license.
+`lrasm` was created by Yair Guterman, Hatef Rahmani, Song Bo Andy Yang . It is licensed under the terms of the MIT license.
 
 ## Credits
-
-`LR_assumption_test` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`lrasm` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
